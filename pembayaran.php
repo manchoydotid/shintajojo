@@ -22,6 +22,8 @@ if( empty( $_SESSION['iduser'] ) ){
 				$bln = $_REQUEST['bln'];
 				$tgl = $_REQUEST['tgl'];
 				$kls = $_REQUEST['kls'];
+				$nama_siswa = $_REQUEST['nama'];
+
 
 				$qjumlah = mysqli_query($connect, "SELECT jumlah FROM jenis_bayar WHERE jenis='$jns' AND kelas='$kls'");
 				list($jumlah)=mysqli_fetch_array($qjumlah);
@@ -33,7 +35,7 @@ if( empty( $_SESSION['iduser'] ) ){
 					echo '<div class="alert alert-danger" role="alert">';
 					echo 'Mohon maaf, '.$jns.' pada bulan '.$bln.' telah dibayarkan.<br></div>';
 				}else{
-					$qbayar = mysqli_query($connect,"INSERT INTO pembayaran VALUES('$jns','$nis','$bln','$tgl','$jml')");
+					$qbayar = mysqli_query($connect,"INSERT INTO pembayaran VALUES('$jns','$nis','$nama_siswa','$kls','$bln','$tgl','$jml')");
 
 					if($qbayar > 0){
 						header('Location: ./admin.php?hlm=bayar&submit=v&nis='.$nis);
@@ -75,6 +77,7 @@ if( empty( $_SESSION['iduser'] ) ){
 ?>
 <form class="form-inline" role="form" method="post" action="./admin.php?hlm=bayar">
   <input type="hidden" name="nis" id="nis" value="<?php echo $nis; ?>">
+	<input type="hidden" name="nama" id="nama" value="<?php echo $nama; ?>">
 	<input type="hidden" name="kls" id="kls" value="<?php echo $kelas; ?>">
   <input type="hidden" name="tgl" id="tgl" value="<?php echo date("Y-m-d"); ?>">
   <div class="form-group">

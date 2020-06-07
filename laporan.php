@@ -13,7 +13,7 @@ if( empty( $_SESSION['iduser'] ) ){
 			echo '<h2>Rekap Pembayaran</h2></br>';
 			?>
 			<form class="form-inline" role="form" method="post" action="">
-				<label for="jenis" class=" control-label">Sort by Jenis Pembayaran</label>
+				<label for="jenis" class=" control-label">Jenis Pembayaran</label>
 				<div class="form-group">
 					<div class="col-sm-8">
 					 	<select name="jns" class="form-control" id="jns">
@@ -56,7 +56,7 @@ if( empty( $_SESSION['iduser'] ) ){
 					 $total = 0;
 					 $total_keseluruhan = 0;
 		       $no=1;
-					 echo '<tr><td colspan="2" bgcolor="#00FF00">'.$bln.'</td></tr>';
+					 echo '<tr><td colspan="2" bgcolor="#008c52" style="color:#fff;">'.$bln.'</td></tr>';
 					 while(list($kls, $jml) = mysqli_fetch_array($sql)){
 						 echo '<tr><td style="text-align:right">Kelas '.$kls.'</td><td><span class="pull-right">Rp. '.number_format($jml).'</span></td></tr>';
 						 $total += $jml;
@@ -66,26 +66,7 @@ if( empty( $_SESSION['iduser'] ) ){
 				 }
 
 			} else {
-         // $tgl = date("Y/m/d");
-				 //
-				 // $months = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
-				 // foreach ($months as $bln) {
-	       //   $q = "SELECT kelas, sum(jumlah) FROM pembayaran WHERE jenis='SPP' AND bulan='$bln' GROUP BY kelas";
-					//  $sql = mysqli_query($connect, $q);
-				 //
-					//  $total = 0;
-		     //   $no=1;
-					//  echo '<tr><td colspan="2" bgcolor="#00FF00">'.$bln.'</td></tr>';
-					//  while(list($kls, $jml) = mysqli_fetch_array($sql)){
-					// 	 echo '<tr><td style="text-align:right">Kelas '.$kls.'</td><td><span class="pull-right">'.number_format($jml).'</span></td></tr>';
-					// 	 $total += $jml;
-					// 		$no++;
-					//  }
-				 //
-				 //
-				 // }
-				 // echo '<tr><td colspan="2"><span class="pull-right">T O T A L</span></td><td><span class="pull-right">'.number_format($total).'</span></td></tr>';
-				 // echo '</table>';
+
       }
    }
 }

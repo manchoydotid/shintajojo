@@ -22,16 +22,16 @@ if( empty( $_SESSION['iduser'] ) ){
 		$sql = mysqli_query($connect, "SELECT * FROM tapel ORDER BY tapel DESC");
 		echo '<h2>Konfigurasi Tahun Pelajaran</h2><hr>';
       echo '<div class="row">';
-		echo '<div class="col-md-6"><table class="table table-bordered">';
-		echo '<tr class="info"><th width="30">#</th><th width="100">Tahun Pelajaran</th>';
+		echo '<div class="col-md-6" style="margin: 0 auto;"><table class="table table-bordered">';
+		echo '<tr class="info"><th width="30">No</th><th width="100">Tahun Pelajaran</th>';
 		echo '<th width="200"><a href="./admin.php?hlm=master&sub=tapel&aksi=baru" class="btn btn-default btn-xs">Tambah Data</a></th></tr>';
-		
+
 		if( mysqli_num_rows($sql) > 0 ){
 			$no = 1;
 			while(list($id,$tapel) = mysqli_fetch_array($sql)){
 				echo '<tr><td>'.$no.'</td>';
 				echo '<td>'.$tapel.'</td>';
-				echo '<td><a href="./admin.php?hlm=master&sub=tapel&aksi=edit&id='.$id.'" class="btn btn-success btn-xs">Edit</a> ';
+				echo '<td style="text-align: center;"><a href="./admin.php?hlm=master&sub=tapel&aksi=edit&id='.$id.'" class="btn btn-success btn-xs">Edit</a> ';
 				echo '<a href="./admin.php?hlm=master&sub=tapel&aksi=hapus&id='.$id.'" class="btn btn-danger btn-xs">Hapus</a></td>';
 				echo '</tr>';
 				$no++;
@@ -39,7 +39,7 @@ if( empty( $_SESSION['iduser'] ) ){
 		} else {
 			echo '<tr><td colspan="4"><em>Belum ada data</em></td></tr>';
 		}
-		
+
 		echo '</table></div></div>';
 	}
 }

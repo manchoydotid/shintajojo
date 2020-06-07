@@ -27,34 +27,18 @@ if( empty( $_SESSION['iduser'] ) ){
 		echo '<div class="col-md-12">';
 		echo '<h2>Daftar Siswa Kelas '.$kelas.' '.$idrombel.'</h2><br>';
 
-		// echo '<form method="post" action="admin.php?hlm=master&sub=kelas&aksi=view" class="form-inline" role="form">';
-		// echo '<input type="hidden" name="kelas" value="'.$kelas.'">';
-		// echo '<input type="hidden" name="idrombel" value="'.$idrombel.'">';
-		// //echo '<input type="hidden" name="kelas" value="'.$kelas.'">';
-		// echo '<div class="form-group"><select name="nis" class="form-control">';
-		// //query untuk menampilkan nama2 siswa pada rombel terkait yang belum mendapatkan/masuk kelas
-		// $qsiswa = mysqli_query($connect,"SELECT nis,nama FROM siswa WHERE kelas='$kelas' AND idrombel='$idrombel' AND nis NOT IN (SELECT nis FROM kelas ) ORDER BY nis");
-		// while(list($nis,$nama)=mysqli_fetch_array($qsiswa)){
-		// 	echo '<option value="'.$nis.'">'.$nis.' '.$nama.'</option>';
-		// }
-		// echo '</select></div>';
-		// echo ' <button type="submit" name="submit" value="simpan" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Tambahkan</button>';
-		// echo ' <a href="admin.php?hlm=master&sub=kelas" class="btn btn-link">Daftar Kelas</a>';
-		// echo '</form>';
-		// echo '</div></div><br>';
-
 		//tabel daftar siswa
 		echo '<div class="row">';
-		echo '<div class="col-md-9">';
+		echo '<div class="col-md-9" style="margin: 0 auto;">';
 		echo '<table class="table table-bordered">';
 		echo '<tr><td colspan="2">Kelas</td><td>'.$kelas.' '.$idrombel.'</td></tr>';
-		echo '<tr class="info"><th width="20">No.</th><th width="150">NIS</th><th>Nama Siswa</th></tr>';
+		echo '<tr class="info"><th width="20">No</th><th width="150">NIS</th><th>Nama Siswa</th></tr>';
 
 		$qkelas = mysqli_query($connect,"SELECT nis FROM siswa WHERE kelas='$kelas' AND idrombel='$idrombel'");
 		if( mysqli_num_rows($qkelas) > 0){
 			$no=1;
 			while(list($nis)=mysqli_fetch_array($qkelas)){
-				echo '<tr><td>'.$no.'</td>';
+				echo '<tr><td style="text-align:center;">'.$no.'</td>';
 				echo '<td>'.$nis.'</td>';
 				$qsiswa = mysqli_query($connect,"SELECT nama FROM siswa WHERE nis='$nis'");
 				list($siswa) = mysqli_fetch_array($qsiswa);

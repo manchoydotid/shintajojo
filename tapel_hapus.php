@@ -18,9 +18,9 @@ if( empty( $_SESSION['iduser'] ) ){
 		$id = $_REQUEST['id'];
 		$sql = mysqli_query($connect,"SELECT tapel FROM tapel WHERE id='$id'");
 		list($tapel) = mysqli_fetch_array($sql);
-		
+
 		echo '<div class="alert alert-danger">Yakin akan menghapus Tahun Pelajaran: <strong>'.$tapel.'</strong><br><br>';
-		echo '<a href="./admin.php?hlm=master&sub=tapel&aksi=hapus&submit=ya&id='.$id.'" class="btn btn-sm btn-success">Ya, Hapus</a> ';
+		echo '<a href="./admin.php?hlm=master&sub=tapel&aksi=hapus&submit=ya&id='.$id.'" class="btn btn-sm btn-danger">Ya, Hapus</a> ';
 		echo '<a href="./admin.php?hlm=master&sub=tapel" class="btn btn-sm btn-default">Tidak</a>';
 		echo '</div>';
 	}

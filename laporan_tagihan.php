@@ -11,12 +11,12 @@ if( empty( $_SESSION['iduser'] ) ){
    echo '<div class="row">';
    echo '<div class="col-md-12">';
    echo '<table class="table table-bordered">';
-   echo '<tr class="info"><th width="50">#</th><th>NIS</th><th>Nama</th><th>Kelas</th>';
+   echo '<tr class="info"><th width="50">No</th><th>NIS</th><th>Nama</th><th>Kelas</th>';
 	 echo '<th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>Mei</th><th>Juni</th><th>Juli</th><th>Ags</th><th>Sept</th><th>Okt</th><th>Nov</th><th>Des</th></tr>';
 
    $no=1;
    while(list($nis, $nama, $kls)=mysqli_fetch_array($sql)){
-      echo '<tr><td>'.$no.'</td><td>'.$nis.'</td><td>'.$nama.'</td><td>'.$kls.'</td>';
+      echo '<tr><td style="text-align:center;">'.$no.'</td><td>'.$nis.'</td><td>'.strtoupper($nama).'</td><td style="text-align:center;">'.$kls.'</td>';
 
 			$months = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
 			foreach ($months as $bln) {

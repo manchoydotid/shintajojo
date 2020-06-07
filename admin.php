@@ -1,12 +1,12 @@
 <?php
-session_start();
-if( empty( $_SESSION['iduser'] ) ){
-	//session_destroy();
-	$_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
-	header('Location: ./');
-	die();
-} else {
-	include "koneksi.php";
+	session_start();
+	if( empty( $_SESSION['iduser'] ) ){
+		//session_destroy();
+		$_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
+		header('Location: ./');
+		die();
+	} else {
+		include "koneksi.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +18,8 @@ if( empty( $_SESSION['iduser'] ) ){
     <meta name="author" content="">
 
     <title>Aplikasi Pembayaran SPP</title>
-
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -51,12 +52,12 @@ if( empty( $_SESSION['iduser'] ) ){
     <?php include "menu.php"; ?>
 
   <div class="container">
-	
+
 	<?php
 	if( isset($_REQUEST['hlm'] )){
-		
+
 		$hlm = $_REQUEST['hlm'];
-		
+
 		switch( $hlm ){
 			case 'bayar':
 				include "pembayaran.php";
@@ -74,8 +75,8 @@ if( empty( $_SESSION['iduser'] ) ){
 	} else {
 	?>
 	  <div class="main_header">
-        <h2 align="center"><strong>APLIKASI PEMBAYARAN SPP MI ASSA'ADIYAH ATTAHIRIYAH</strong></h2>
-        <p align="center">Selamat Datang<strong> <?php echo $_SESSION['fullname']; ?></strong></p>
+        <h2 align="center"><strong>Aplikasi Pembayaran Sekolah MI Assa'adiyah Attahiriyah</strong></h2>
+        <p align="center">Selamat Datang <strong> <?php echo $_SESSION['fullname']; ?></strong></p>
 		<p align="center"><strong>JALAN RAYA CIRACAS NO.7 JAKARTA TIMUR - TLP (021)8702327</strong></p>
 	  </div>
 	<?php

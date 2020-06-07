@@ -9,16 +9,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    
-    <title>MI Assa'adiyah Attahiriyah</title>
 
+    <title>MI Assa'adiyah Attahiriyah</title>
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	<style type="text/css">
 		body {
 			padding-top: 40px;
 			padding-bottom: 40px;
 			background-color: #eee;
-			background-image: url(logo/background.jpg);
+			background-image: url(images/background.jpg);
 		}
 		.front_logo{
 			display: block;
@@ -68,26 +69,26 @@
     <div class="container">
 	<?php
 		include "koneksi.php";
-		
+
 		if( isset( $_REQUEST['submit'] ) ){
 			$username = $_REQUEST['username'];
 			$password = $_REQUEST['password'];
-			
+
 			$sql = mysqli_query($connect, "SELECT iduser,username,admin,fullname FROM user WHERE username='$username' AND password='$password'");
-			
+
 			if( mysqli_num_rows($sql) > 0 ){
 				list($iduser,$username,$admin,$fullname) = mysqli_fetch_array($sql);
-				
+
 				//session_start();
 				$_SESSION['iduser'] = $iduser;
 				$_SESSION['username'] = $username;
 				$_SESSION['admin'] = $admin;
 				$_SESSION['fullname'] = $fullname;
-				
+
 				header("Location: ./admin.php");
 				die();
 			} else {
-			
+
 				$_SESSION['err'] = 'Silahkan periksa kembali username atau password anda!';
 				header('Location: ./');
 				die();
@@ -101,8 +102,9 @@
 				echo '<div class="alert alert-warning alert-message">'.$err.'</div>';
 			}
 		?>
-		<img class="front_logo" src="logo/logo_mi.gif">
-        <h2 class="form-signin-heading"><strong>Aplikasi Pembayaran SPP</strong></h2>
+		<img class="front_logo" src="images/logo_mi.gif">
+        <h2 class="form-signin-heading">Aplikasi Pembayaran</h2>
+				<h3 class="form-signin-heading"><strong>MI Assaadiyah Attahiriyah</strong></h3>
         <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
         <input type="password" name="password" class="form-control" placeholder="Password" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Login</button>
@@ -112,11 +114,11 @@
 	}
 	?>
     </div> <!-- /container -->
-	
+
 	<!-- Bootstrap core JavaScript, Placed at the end of the document so the pages load faster -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-	
+
 	<script type="text/javascript">
 		$(".alert-message").alert().delay(3000).slideUp('slow');
 	</script>

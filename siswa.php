@@ -21,19 +21,19 @@ if( empty( $_SESSION['iduser'] ) ){
 	} else {
 		$sql = mysqli_query($connect, "SELECT * FROM siswa ORDER BY nis");
 		echo '<h2>Daftar Siswa</h2><hr>';
-      echo '<div class="row">';
-		echo '<div class="col-md-9"><table class="table table-bordered">';
-		echo '<tr class="info"><th>#</th><th width="100">NIS</th><th>Nama Lengkap</th><th>Kelas</th>';
+    echo '<div class="row">';
+		echo '<div class="col-md-9" style="margin: 0 auto;"><table class="table table-bordered">';
+		echo '<tr class="info"><th>No</th><th width="100">NIS</th><th>Nama Lengkap</th><th>Kelas</th>';
 		echo '<th width="200"><a href="./admin.php?hlm=master&sub=siswa&aksi=baru" class="btn btn-default btn-xs">Tambah Data</a></th></tr>';
 
 		if( mysqli_num_rows($sql) > 0 ){
 			$no = 1;
 			while(list($nis,$nama,$kelas,$idrombel) = mysqli_fetch_array($sql)){
-				echo '<tr><td>'.$no.'</td>';
+				echo '<tr><td style="text-align: center;">'.$no.'</td>';
 				echo '<td>'.$nis.'</td>';
-				echo '<td>'.$nama.'</td>';
-				echo '<td>'.$kelas.' '.$idrombel.'</td>';
-				echo '<td><a href="./admin.php?hlm=master&sub=siswa&aksi=edit&nis='.$nis.'" class="btn btn-success btn-xs">Edit</a> ';
+				echo '<td>'.strtoupper($nama).'</td>';
+				echo '<td style="text-align: center;">'.$kelas.' '.$idrombel.'</td>';
+				echo '<td style="text-align: center;"><a href="./admin.php?hlm=master&sub=siswa&aksi=edit&nis='.$nis.'" class="btn btn-success btn-xs">Edit</a> ';
 				echo '<a href="./admin.php?hlm=master&sub=siswa&aksi=hapus&nis='.$nis.'" class="btn btn-danger btn-xs">Hapus</a></td>';
 				echo '</tr>';
 				$no++;

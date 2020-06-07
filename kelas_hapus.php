@@ -25,7 +25,7 @@ if( empty( $_SESSION['iduser'] ) ){
 		echo '<br>Tahun Pelajaran: '.$tapel;
 
 		echo '<br><br>Aksi ini permanen!<br><br>';
-		echo '<a href="./admin.php?hlm=master&sub=kelas&aksi=hapus&submit=ya&kelas='.$kelas.'&tapel='.$tapel.'" class="btn btn-sm btn-success">Ya, Hapus</a> ';
+		echo '<a href="./admin.php?hlm=master&sub=kelas&aksi=hapus&submit=ya&kelas='.$kelas.'&tapel='.$tapel.'" class="btn btn-sm btn-danger">Ya, Hapus</a> ';
 		echo '<a href="./admin.php?hlm=master&sub=kelas" class="btn btn-sm btn-default">Tidak</a>';
 		echo '</div>';
 	}

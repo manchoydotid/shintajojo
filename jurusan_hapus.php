@@ -20,7 +20,7 @@ if( empty( $_SESSION['iduser'] ) ){
 		list($idrombel) = mysqli_fetch_array($sql);
 
 		echo '<div class="alert alert-danger">Yakin akan menghapus Rombel: <strong>'.$idrombel.'</strong><br><br>';
-		echo '<a href="./admin.php?hlm=master&sub=jurusan&aksi=hapus&submit=ya&idrombel='.$idrombel.'" class="btn btn-sm btn-success">Ya, Hapus</a> ';
+		echo '<a href="./admin.php?hlm=master&sub=jurusan&aksi=hapus&submit=ya&idrombel='.$idrombel.'" class="btn btn-sm btn-danger">Ya, Hapus</a> ';
 		echo '<a href="./admin.php?hlm=master&sub=jurusan" class="btn btn-sm btn-default">Tidak</a>';
 		echo '</div>';
 	}

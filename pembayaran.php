@@ -35,14 +35,15 @@ if( empty( $_SESSION['iduser'] ) ){
 					echo '<div class="alert alert-danger" role="alert">';
 					echo 'Mohon maaf, '.$jns.' pada bulan '.$bln.' telah dibayarkan.<br></div>';
 				}else{
-					$qbayar = mysqli_query($connect,"INSERT INTO pembayaran VALUES('$jns','$nis','$nama_siswa','$kls','$bln','$tgl','$jml')");
+					$qbayar = mysqli_query($connect,"INSERT INTO pembayaran (jenis, nis, nama, kelas, bulan, tgl_bayar, jumlah)
+					VALUES('$jns','$nis','$nama_siswa','$kls','$bln','$tgl','$jml')");
 
 					if($qbayar > 0){
 						header('Location: ./admin.php?hlm=bayar&submit=v&nis='.$nis);
 						// echo 'nis : '.$nis.', jenis : '.$jns.', tgl : '.$tgl.', jumlah : '.$jml;
 						die();
 					} else {
-						echo("Error description: " . $sql -> error);
+						echo( 'ada ERROR dg query'. mysqli_error($connect));
 					}
 			}
 		}

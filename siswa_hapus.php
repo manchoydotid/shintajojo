@@ -17,17 +17,13 @@ if( empty( $_SESSION['iduser'] ) ){
 	} else {
 		$nis = $_REQUEST['nis'];
 		$sql = mysqli_query($connect,"SELECT * FROM siswa WHERE nis='$nis'");
-		list($nis,$siswa,$idrombel) = mysqli_fetch_array($sql);
+		list($nis,$siswa,$kelas,$idrombel) = mysqli_fetch_array($sql);
 
 		echo '<div class="alert alert-danger">Yakin akan menghapus Siswa:';
 		echo '<br>Nama  : <strong>'.$siswa.'</strong>';
 		echo '<br>NIS   : '.$nis;
-
-		$qrombel = mysqli_query($connect,"SELECT * FROM rombel ");
-		list($idrombel) = mysqli_fetch_array($qrombel);
-
-		echo '<br>Rombel : '.$idrombel.' <br><br>';
-		echo '<a href="./admin.php?hlm=master&sub=siswa&aksi=hapus&submit=ya&nis='.$nis.'" class="btn btn-sm btn-success">Ya, Hapus</a> ';
+		echo '<br>Rombel : '.$kelas.' '.$idrombel.' <br><br>';
+		echo '<a href="./admin.php?hlm=master&sub=siswa&aksi=hapus&submit=ya&nis='.$nis.'" class="btn btn-sm btn-danger">Ya, Hapus</a> ';
 		echo '<a href="./admin.php?hlm=master&sub=siswa" class="btn btn-sm btn-default">Tidak</a>';
 		echo '</div>';
 	}

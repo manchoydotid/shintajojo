@@ -12,7 +12,7 @@ if( empty( $_SESSION['iduser'] ) ){
 		$jenis = $_REQUEST['jenis'];
 		$jumlah = $_REQUEST['jumlah'];
 
-		$sql = mysqli_query($connect,"INSERT INTO jenis_bayar VALUES('$tapel','$kelas','$jenis','$jumlah')");
+		$sql = mysqli_query($connect,"INSERT INTO jenis_bayar (th_pelajaran, kelas, jenis, jumlah) VALUES('$tapel','$kelas','$jenis','$jumlah')");
 
 		if($sql > 0){
 			header('Location: ./admin.php?hlm=master&sub=jenis');

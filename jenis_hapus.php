@@ -25,10 +25,10 @@ if( empty( $_SESSION['iduser'] ) ){
 		//$jumlah = $_REQUEST['jumlah'];
 
 		$sql = mysqli_query($connect,"SELECT * FROM jenis_bayar WHERE th_pelajaran='$tapel' AND  kelas='$kelas' AND jenis='$jenis'");
-		list($thn,$tk,$jns,$jml) = mysqli_fetch_array($sql);
+		list($id, $thn, $kls, $jns, $jml) = mysqli_fetch_array($sql);
 
-		echo '<div class="alert alert-danger">Yakin akan menghapus Jenis Pembayaran: <strong>'.$tk.' ('.$thn.')</strong>: Rp. '.$jml.'<br><br>';
-		echo '<a href="./admin.php?hlm=master&sub=jenis&aksi=hapus&submit=ya&tapel='.$thn.'&kelas='.$tk.'&jenis='.$jns.'" class="btn btn-sm btn-success">Ya, Hapus</a> ';
+		echo '<div class="alert alert-danger">Yakin akan menghapus jenis pembayaran : <br><strong>'.$jns.' ('.$thn.') : Rp. '.$jml.'</strong><br><br>';
+		echo '<a href="./admin.php?hlm=master&sub=jenis&aksi=hapus&submit=ya&tapel='.$thn.'&kelas='.$kls.'&jenis='.$jns.'" class="btn btn-sm btn-danger">Ya, Hapus</a> ';
 		echo '<a href="./admin.php?hlm=master&sub=jenis" class="btn btn-sm btn-default">Tidak</a>';
 		echo '</div>';
 	}

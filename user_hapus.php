@@ -20,8 +20,8 @@ if( empty( $_SESSION['iduser'] ) ){
 		$sql = mysqli_query($connect, "SELECT username,fullname FROM user WHERE iduser='$id'");
 		list($username,$fullname) = mysqli_fetch_array($sql);
 
-		echo '<div class="alert alert-danger">Yakin akan menghapus User: <strong>'.$fullname.' ('.$username.')</strong> ?<br><br>';
-		echo '<a href="./admin.php?hlm=master&aksi=hapus&submit=ya&id='.$id.'" class="btn btn-sm btn-success">Ya, Hapus</a> ';
+		echo '<div class="alert alert-danger">Yakin akan menghapus User : <br><strong>'.$fullname.' ('.$username.')</strong> ?<br><br>';
+		echo '<a href="./admin.php?hlm=master&aksi=hapus&submit=ya&id='.$id.'" class="btn btn-sm btn-danger">Ya, Hapus</a> ';
 		echo '<a href="./admin.php?hlm=master" class="btn btn-sm btn-default">Tidak</a>';
 		echo '</div>';
 	}

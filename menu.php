@@ -4,7 +4,10 @@ if( !empty( $_SESSION['iduser'] ) ){
 <style>
 
 </style>
-
+<head>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+</head>
 <!-- Fixed navbar -->
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
@@ -15,7 +18,7 @@ if( !empty( $_SESSION['iduser'] ) ){
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 	  </button>
-	  <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-fire"></span>SPP</a>
+	  <!-- <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-fire"></span>SPP</a> -->
 	</div>
 	<div class="navbar-collapse collapse">
 	  <ul class="nav navbar-nav">
@@ -25,17 +28,16 @@ if( !empty( $_SESSION['iduser'] ) ){
 		  <ul class="dropdown-menu">
 			<li><a href="./admin.php?hlm=master&sub=siswa">Siswa</a></li>
 			<li><a href="./admin.php?hlm=master&sub=kelas">Kelas</a></li>
-			<?php
-			if( $_SESSION['admin'] == 1 ){
-			?>
-			<li class="divider"></li>
+  			<?php
+  			   if( $_SESSION['admin'] == 1 ){
+  			?>
+      <li><a href="./admin.php?hlm=master&sub=tapel">Tahun Pelajaran</a></li>
 			<li><a href="./admin.php?hlm=master&sub=jenis">Jenis Pembayaran</a></li>
-			<li><a href="./admin.php?hlm=master">User</a></li>
 			<li class="divider"></li>
-			<li><a href="./admin.php?hlm=master&sub=tapel">Tahun Pelajaran</a></li>
-			<?php
-			}
-			?>
+      <li><a href="./admin.php?hlm=master">User</a></li>
+  			<?php
+  			   }
+  			?>
 		  </ul>
 		</li>
 		<li><a href="./admin.php?hlm=bayar">Pembayaran</a></li>
@@ -43,7 +45,7 @@ if( !empty( $_SESSION['iduser'] ) ){
 		  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laporan <b class="caret"></b></a>
 		  <ul class="dropdown-menu">
 			<li><a href="./admin.php?hlm=laporan">Rekap Pembayaran</a></li>
-			<li><a href="./admin.php?hlm=laporan&sub=tagihan">Cetak Tagihan</a></li>
+			<li><a href="./admin.php?hlm=laporan&sub=tagihan">Rekap Pembayaran SPP</a></li>
 		  </ul>
 		</li>
 
@@ -61,7 +63,8 @@ if( !empty( $_SESSION['iduser'] ) ){
 		  </ul>
 		</li>
 	  </ul>
-	</div><!--/.nav-collapse -->
+	</div>
+  <!-- nav-collapse -->
   </div>
 </div>
 <?php

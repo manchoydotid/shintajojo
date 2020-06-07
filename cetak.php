@@ -152,7 +152,7 @@ if( empty( $_SESSION['iduser'] ) ){
 			   echo '<div class="col-sm-6"><table class="table table-bordered">';
 			   echo '<tr><td colspan="2">Nomor Induk</td><td colspan="3">'.$nis.'</td></tr>';
 			   echo '<tr><td colspan="2">Nama Siswa</td><td colspan="3">'.$nama.'</td></tr>';
-			   echo '<tr class="info"><th width="50">#</th><th width="100">Jenis</th><th>Bulan</th><th>Tanggal Bayar</th><th>Jumlah</th>';
+			   echo '<tr class="info"><th width="50">No</th><th width="100">Jenis</th><th>Bulan</th><th>Tanggal Bayar</th><th>Jumlah</th>';
 			   echo '</tr>';
 
 			   //Menampilkan Histori Pembayaran
@@ -160,11 +160,11 @@ if( empty( $_SESSION['iduser'] ) ){
 			   if(mysqli_num_rows($qbayar1) > 0){
 			      $no = 1;
 			      while(list($kelas,$bulan,$tgl,$jumlah) = mysqli_fetch_array($qbayar1)){
-			         echo '<tr><td>'.$no.'</td>';
+			         echo '<tr><td style="text-align:center;">'.$no.'</td>';
 			         echo '<td>'.$kelas.'</td>';
 			         echo '<td>'.$bulan.'</td>';
-			         echo '<td>'.$tgl.'</td>';
-			         echo '<td>'.$jumlah.'</td>';
+			         echo '<td style="text-align:center;">'.$tgl.'</td>';
+			         echo '<td style="text-align:right;">'.$jumlah.'</td>';
 			         echo '</tr>';
 
 			         $no++;

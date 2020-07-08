@@ -44,8 +44,8 @@ if( !empty( $_SESSION['iduser'] ) ){
 		<li class="dropdown">
 		  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laporan <b class="caret"></b></a>
 		  <ul class="dropdown-menu">
-			<li><a href="./admin.php?hlm=laporan">Rekap Pembayaran</a></li>
 			<li><a href="./admin.php?hlm=laporan&sub=tagihan">Rekap Pembayaran SPP</a></li>
+			<li><a href="./admin.php?hlm=laporan">Laporan Pembayaran</a></li>
 		  </ul>
 		</li>
 

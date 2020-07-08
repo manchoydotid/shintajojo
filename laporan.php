@@ -11,7 +11,7 @@ if( empty( $_SESSION['iduser'] ) ){
    } else {
 
 			echo '<h2>Rekap Pembayaran</h2></br>';
-			?>
+?>
 			<form class="form-inline" role="form" method="post" action="">
 				<label for="jenis" class=" control-label">Jenis Pembayaran</label>
 				<div class="form-group">
@@ -34,39 +34,41 @@ if( empty( $_SESSION['iduser'] ) ){
 			  <button type="submit" name="submit" class="btn btn-default">Tampilkan</button>
 			</form>
 			<hr>
-
-			<div class="row">
-			<div class="col-md-5">
-			<table class="table table-bordered">
+			<div class="container">
 
 			<?php
-      if(isset($_REQUEST['submit'])){
-         $submit = $_REQUEST['submit'];
-				 $jenis_bayar = $_REQUEST['jns'];
+				if(isset($_REQUEST['submit'])){
+					$submit = $_REQUEST['submit'];
+					$jenis_bayar = $_REQUEST['jns'];
 
-          echo '<h5>Jenis Pembayaran : '.$jenis_bayar.'</h5><hr>';
-          echo '<a class="noprint pull-right btn btn-default" onclick="fnCetak()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Cetak</a>';
+					echo '<h5>Jenis Pembayaran : '.$jenis_bayar.'</h5><hr>';
+					echo '<a class="noprint pull-right btn btn-default" onclick="fnCetak()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Cetak</a>';
 
-				 $months = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
-				 foreach ($months as $bln) {
+					$months = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
+					echo '<div class="flex-container">';
 
-	         $q = "SELECT kelas, sum(jumlah) FROM pembayaran WHERE jenis='$jenis_bayar' AND bulan='$bln' GROUP BY kelas";
-					 $sql = mysqli_query($connect, $q);
+					foreach ($months as $bln) {
+					
+						$q = "SELECT kelas, sum(jumlah) FROM pembayaran WHERE jenis='$jenis_bayar' AND bulan='$bln' GROUP BY kelas";
+						$sql = mysqli_query($connect, $q);
 
-					 $total = 0;
-					 $total_keseluruhan = 0;
-		       $no=1;
-					 echo '<tr><td colspan="2" bgcolor="#008c52" style="color:#fff;">'.$bln.'</td></tr>';
-					 while(list($kls, $jml) = mysqli_fetch_array($sql)){
-						 echo '<tr><td style="text-align:right">Kelas '.$kls.'</td><td><span class="pull-right">Rp. '.number_format($jml).'</span></td></tr>';
-						 $total += $jml;
-						 $no++;
-					 }
-					 echo '<tr><td style="text-align:right"><strong>Total</strong></td><td><span class="pull-right"><strong>Rp. '.number_format($total).'</strong></span></td></tr>';
-				 }
+						$total = 0;
+						$total_keseluruhan = 0;
+						$no=1;
+						echo '<table class="table table-bordered">';					
+						echo '<tr><td colspan="2" bgcolor="#008c52" style="color:#fff;">'.$bln.'</td></tr>';
+						while(list($kls, $jml) = mysqli_fetch_array($sql)){
+							echo '<tr><td style="text-align:right">Kelas '.$kls.'</td><td><span class="pull-right">Rp. '.number_format($jml).'</span></td></tr>';
+							$total += $jml;
+							$no++;
+						}
+						echo '<tr><td style="text-align:right"><strong>Total</strong></td><td><span class="pull-right"><strong>Rp. '.number_format($total).'</strong></span></td></tr>';
+						echo '</table>';
+					}
+					echo '</div>';
+					echo '</div>';
 
-			} else {
-
+				} else {
       }
    }
 }

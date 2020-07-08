@@ -5,7 +5,6 @@ if( empty( $_SESSION['iduser'] ) ){
 	die();
 } else {
    echo '<h2>Laporan Pembayaran SPP Siswa</h2><hr>';
-   echo '<a class="noprint pull-right btn btn-default" onclick="fnCetak()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Cetak</a>';
    $sql = mysqli_query($connect,"SELECT nis, nama, kelas from siswa ORDER BY kelas");
 
    echo '<div class="row">';
@@ -17,14 +16,13 @@ if( empty( $_SESSION['iduser'] ) ){
    $no=1;
    while(list($nis, $nama, $kls)=mysqli_fetch_array($sql)){
       echo '<tr><td style="text-align:center;">'.$no.'</td><td>'.$nis.'</td><td>'.strtoupper($nama).'</td><td style="text-align:center;">'.$kls.'</td>';
-
 			$months = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
 			foreach ($months as $bln) {
-				$query_jml_perbulan = "SELECT jumlah FROM pembayaran WHERE jenis='SPP' AND nama='$nama' AND nis='$nis' AND bulan='$bln'";
+				$query_jml_perbulan = "SELECT jumlah FROM pembayaran WHERE jenis='SPP' AND nis='$nis' AND bulan='$bln'";
 				$sql_jml_perbulan = mysqli_query($connect, $query_jml_perbulan);
 				if(mysqli_num_rows($sql_jml_perbulan) > 0){
 					while(list($jml) = mysqli_fetch_array($sql_jml_perbulan)) {
-						echo '<td>'.number_format($jml).'</td>';
+						echo '<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>';
 					}
 				}else{
 						echo '<td>-</td>';

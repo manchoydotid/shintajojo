@@ -37,7 +37,8 @@
 	.main_header{
 		color: #fdfdfc;
 		padding: 20px;
-		background-color:  rgba(0, 0, 0, 0.6);
+		background-image: url(images/bg.svg);
+		border-radius: 5px;
 	}
 	.admin_panel{
 		background-image: url("logo/home.jpeg");
@@ -76,8 +77,8 @@
 	?>
 	  <div class="main_header">
         <h2 align="center"><strong>Aplikasi Pembayaran Sekolah MI Assa'adiyah Attahiriyah</strong></h2>
-        <p align="center">Selamat Datang <strong> <?php echo $_SESSION['fullname']; ?></strong></p>
 		<p align="center"><strong>JALAN RAYA CIRACAS NO.7 JAKARTA TIMUR - TLP (021)8702327</strong></p>
+        <p align="center">Selamat Datang <strong> <?php echo $_SESSION['fullname']; ?></strong></p>
 	  </div>
 	<?php
 	}

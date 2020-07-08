@@ -31,8 +31,9 @@ if( empty( $_SESSION['iduser'] ) ){
 		echo '<div class="row">';
 		echo '<div class="col-md-9" style="margin: 0 auto;">';
 		echo '<table class="table table-bordered">';
-		echo '<tr><td colspan="2">Kelas</td><td>'.$kelas.' '.$idrombel.'</td></tr>';
-		echo '<tr class="info"><th width="20">No</th><th width="150">NIS</th><th>Nama Siswa</th></tr>';
+		echo '<tr><td colspan="2">Kelas</td><td colspan="2">'.$kelas.' '.$idrombel.'</td></tr>';
+		echo '<tr class="info"><th width="20">No</th><th width="150">NIS</th><th>Nama Siswa</th>';
+		echo '<th width="200"><a href="./admin.php?hlm=master&sub=siswa&aksi=baru" class="btn btn-default btn-xs">Tambah Data</a></th></tr>';
 
 		$qkelas = mysqli_query($connect,"SELECT nis FROM siswa WHERE kelas='$kelas' AND idrombel='$idrombel'");
 		if( mysqli_num_rows($qkelas) > 0){
@@ -43,6 +44,8 @@ if( empty( $_SESSION['iduser'] ) ){
 				$qsiswa = mysqli_query($connect,"SELECT nama FROM siswa WHERE nis='$nis'");
 				list($siswa) = mysqli_fetch_array($qsiswa);
 				echo '<td>'.$siswa.'</td>';
+				echo '<td style="text-align: center;"><a href="./admin.php?hlm=master&sub=siswa&aksi=edit&nis='.$nis.'" class="btn btn-success btn-xs">Edit</a> ';
+				echo '<a href="./admin.php?hlm=master&sub=siswa&aksi=hapus&nis='.$nis.'" class="btn btn-danger btn-xs">Hapus</a></td></tr>';
 				$no++;
 			}
 		} else {

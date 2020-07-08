@@ -4873,7 +4873,7 @@ a.label:hover,a.label:focus {
   vertical-align: baseline;
   white-space: nowrap;
   text-align: center;
-  background-color: #eba30a;
+  background-color: #ff0039;
   border-radius: 5px;
 }
 
@@ -6848,4 +6848,17 @@ a.list-group-item-danger.active:hover,a.list-group-item-danger.active:focus {
 
 .popover {
   color: #333333;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+
+.flex-container > table {
+  background-color: #f1f1f1;
+  width: 40%;
+  margin: 10px;
+  text-align: center;
 }

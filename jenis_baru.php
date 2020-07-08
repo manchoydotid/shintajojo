@@ -29,7 +29,15 @@ if( empty( $_SESSION['iduser'] ) ){
 	<div class="form-group">
 		<label for="tapel" class="col-sm-2 control-label">Tahun Pelajaran</label>
 		<div class="col-sm-2">
-			<input type="text" class="form-control" id="tapel" name="tapel" placeholder="mmmm/nnnn" required autofocus>
+			<!-- <input type="text" class="form-control" id="tapel" name="tapel" placeholder="mmmm/nnnn" required autofocus> -->
+			<select name="tapel" class="form-control" id="tapel">
+				<?php
+					$qtapel = mysqli_query($connect, "SELECT tapel FROM tapel");
+					while(list($tapel)=mysqli_fetch_array($qtapel)){
+						echo '<option value="'.$tapel.'">'.$tapel.'</option>';
+					}
+				?>
+			</select>
 		</div>
 	</div>
 	<div class="form-group">

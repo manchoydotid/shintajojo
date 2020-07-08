@@ -18,6 +18,7 @@ if( empty( $_SESSION['iduser'] ) ){
 
 		//proses simpan pembayaran
 		if($submit=='bayar'){
+				$tapel = $_REQUEST['tapel'];
 				$jns = $_REQUEST['jns'];
 				$bln = $_REQUEST['bln'];
 				$tgl = $_REQUEST['tgl'];
@@ -30,13 +31,13 @@ if( empty( $_SESSION['iduser'] ) ){
 				$jml = $jumlah;
 
 				//Untuk cek, supaya tidak bayar 2 kali untuk bulan yang sama
-				$qtidakdouble = mysqli_query($connect, "SELECT * FROM pembayaran WHERE jenis='$jns' AND nis='$nis' AND bulan='$bln'");
+				$qtidakdouble = mysqli_query($connect, "SELECT * FROM pembayaran WHERE th_pelajaran='$tapel' AND jenis='$jns' AND nis='$nis' AND bulan='$bln'");
 				if(mysqli_num_rows($qtidakdouble) > 0){
 					echo '<div class="alert alert-danger" role="alert">';
 					echo 'Mohon maaf, '.$jns.' pada bulan '.$bln.' telah dibayarkan.<br></div>';
 				}else{
-					$qbayar = mysqli_query($connect,"INSERT INTO pembayaran (jenis, nis, nama, kelas, bulan, tgl_bayar, jumlah)
-					VALUES('$jns','$nis','$nama_siswa','$kls','$bln','$tgl','$jml')");
+					$qbayar = mysqli_query($connect,"INSERT INTO pembayaran (th_pelajaran, jenis, nis, nama, kelas, bulan, tgl_bayar, jumlah)
+					VALUES('$tapel','$jns','$nis','$nama_siswa','$kls','$bln','$tgl','$jml')");
 
 					if($qbayar > 0){
 						header('Location: ./admin.php?hlm=bayar&submit=v&nis='.$nis);
@@ -70,17 +71,28 @@ if( empty( $_SESSION['iduser'] ) ){
 
 		echo '<div class="row">';
 		echo '<div class="col-sm-9"><table class="table table-bordered">';
-		echo '<tr><td colspan="2">Nomor Induk</td><td colspan="3">'.$nis.'</td>';
+		echo '<tr><td colspan="2">Nomor Induk</td><td colspan="4">'.$nis.'</td>';
 		echo '<td><a href="./cetak.php?nis='.$nis.'" target="_blank" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> cetak semua</a></td></tr>';
-		echo '<tr><td colspan="2">Nama Siswa</td><td colspan="4">'.$nama.'</td></tr>';
-		echo '<tr><td colspan="2">Kelas</td><td colspan="4">'.$kelas.'</td></tr>';
-		echo '<tr><td colspan="2">Pembayaran</td><td colspan="4">';
+		echo '<tr><td colspan="2">Nama Siswa</td><td colspan="5">'.$nama.'</td></tr>';
+		echo '<tr><td colspan="2">Kelas</td><td colspan="5">'.$kelas.'</td></tr>';
+		echo '<tr><td colspan="2">Pembayaran</td><td colspan="5">';
 ?>
 <form class="form-inline" role="form" method="post" action="./admin.php?hlm=bayar">
   <input type="hidden" name="nis" id="nis" value="<?php echo $nis; ?>">
 	<input type="hidden" name="nama" id="nama" value="<?php echo $nama; ?>">
 	<input type="hidden" name="kls" id="kls" value="<?php echo $kelas; ?>">
   <input type="hidden" name="tgl" id="tgl" value="<?php echo date("Y-m-d"); ?>">
+  <div class="form-group">
+		<label class="sr-only" for="th_pelajaran">Tahun Pelajaran</label>
+		<select name="tapel" class="form-control" id="tapel">
+				<?php
+					$qtapel = mysqli_query($connect, "SELECT tapel FROM tapel");
+					while(list($tapel)=mysqli_fetch_array($qtapel)){
+						echo '<option value="'.$tapel.'">'.$tapel.'</option>';
+					}
+				?>
+		</select>
+	</div>
   <div class="form-group">
     <label class="sr-only" for="bln">Bulan</label>
 	<select name="bln" id="bln" class="form-control">
@@ -113,16 +125,17 @@ if( empty( $_SESSION['iduser'] ) ){
 </form>
 <?php
 		echo '</td></tr>';
-		echo '<tr class="info"><th width="50">No</th><th width="100">Jenis</th><th>Bulan</th><th>Tanggal Bayar</th><th>Jumlah</th>';
+		echo '<tr class="info"><th width="50">No</th><th width="100">Tahun Pelajaran</th><th width="100">Jenis</th><th>Bulan</th><th>Tanggal Bayar</th><th>Jumlah</th>';
 		echo '<th>&nbsp;</th>';
 		echo '</tr>';
 
 		//tampilkan histori pembayaran, jika ada
-		$qbayar = mysqli_query($connect,"SELECT jenis,bulan,tgl_bayar,jumlah FROM pembayaran WHERE nis='$nis' ORDER BY tgl_bayar DESC");
+		$qbayar = mysqli_query($connect,"SELECT jenis,th_pelajaran,bulan,tgl_bayar,jumlah FROM pembayaran WHERE nis='$nis' ORDER BY tgl_bayar DESC");
 		if(mysqli_num_rows($qbayar) > 0){
 			$no = 1;
-			while(list($jenis,$bulan,$tgl,$jumlah) = mysqli_fetch_array($qbayar)){
+			while(list($jenis,$th_pelajaran,$bulan,$tgl,$jumlah) = mysqli_fetch_array($qbayar)){
 				echo '<tr><td>'.$no.'</td>';
+				echo '<td>'.$th_pelajaran.'</td>';
 				echo '<td>'.$jenis.'</td>';
 				echo '<td>'.$bulan.'</td>';
 				echo '<td>'.$tgl.'</td>';
@@ -131,13 +144,13 @@ if( empty( $_SESSION['iduser'] ) ){
 				if( $_SESSION['admin'] == 1 ){
 					echo '<a href="./admin.php?hlm=bayar&submit=hapus&jns='.$jenis.'&nis='.$nis.'&bln='.$bulan.'&tgl='.$tgl.'" class="btn btn-danger btn-xs">Hapus</a>';
 				}
-            echo ' <a href="./cetak.php?submit=nota&jns='.$jenis.'&nis='.$nis.'&bln='.$bulan.'&tgl='.$tgl.'" target="_blank" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>';
+            	echo ' <a href="./cetak.php?submit=nota&jns='.$jenis.'&nis='.$nis.'&bln='.$bulan.'&tgl='.$tgl.'" target="_blank" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>';
 				echo '</td></tr>';
 
 				$no++;
 			}
 		} else {
-			echo '<tr><td colspan="6"><em>Belum ada data!</em></td></tr>';
+			echo '<tr><td colspan="7"><em>Belum ada data!</em></td></tr>';
 		}
 		echo '</table></div></div>';
 

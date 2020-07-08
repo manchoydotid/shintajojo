@@ -9,9 +9,12 @@ if( empty( $_SESSION['iduser'] ) ){
 
    echo '<div class="row">';
    echo '<div class="col-md-12">';
+   echo '<strong>Pencarian &nbsp; &nbsp</strong>'; 
+   echo '<input style="width:  300px;" type="text" id="search" placeholder="Masukan nis atau nama.." onkeyup="searchTable()"/></br></br>';
    echo '<table class="table table-bordered">';
-   echo '<tr class="info"><th width="50">No</th><th>NIS</th><th>Nama</th><th>Kelas</th>';
-	 echo '<th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>Mei</th><th>Juni</th><th>Juli</th><th>Ags</th><th>Sept</th><th>Okt</th><th>Nov</th><th>Des</th></tr>';
+   echo '<thead><tr class="info"><th width="50">No</th><th>NIS</th><th>Nama</th><th>Kelas</th>';
+   echo '<th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th><th>Mei</th><th>Juni</th><th>Juli</th><th>Ags</th><th>Sept</th><th>Okt</th><th>Nov</th><th>Des</th></tr>';
+   echo '</thead><tbody id="myTable">';
 
    $no=1;
    while(list($nis, $nama, $kls)=mysqli_fetch_array($sql)){
@@ -30,6 +33,40 @@ if( empty( $_SESSION['iduser'] ) ){
 			}
       $no++;
    }
-   echo '</table></div></div>';
+   echo '</tbody></table></div></div>';
 }
 ?>
+
+		<!-- Untuk Pencarian -->
+		<script>
+		function searchTable() {
+			var input;
+			var saring;
+			var status; 
+			var tbody; 
+			var tr; 
+			var td;
+			var i; 
+			var j;
+			input = document.getElementById("search");
+			saring = input.value.toUpperCase();
+			tbody = document.getElementsByTagName("tbody")[0];;
+			tr = tbody.getElementsByTagName("tr");
+			for (i = 0; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td");
+				for (j = 0; j < td.length; j++) {
+					if (td[j].innerHTML.toUpperCase().indexOf(saring) > -1) {
+						status = true;
+					}
+				}
+				if (status) {
+					tr[i].style.display = "";
+					status = false;
+				} else {
+					tr[i].style.display = "none";
+				}
+			}
+		}
+		</script>
+		<!-- end form content -->
+

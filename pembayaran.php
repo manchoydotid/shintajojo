@@ -67,15 +67,17 @@ if( empty( $_SESSION['iduser'] ) ){
 
 		//tampilkan data siswa
 		$qsiswa = mysqli_query($connect,"SELECT * FROM siswa WHERE nis='$nis'");
-		list($nis,$nama,$kelas) = mysqli_fetch_array($qsiswa);
+		if(mysqli_num_rows($qsiswa) > 0){
+			list($nis,$nama,$kelas) = mysqli_fetch_array($qsiswa);	
+			echo '<div class="row">';
+			echo '<div class="col-sm-9"><table class="table table-bordered">';
+			echo '<tr><td colspan="2">Nomor Induk</td><td colspan="4">'.$nis.'</td>';
+			echo '<td><a href="./cetak.php?nis='.$nis.'" target="_blank" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> cetak semua</a></td></tr>';
+			echo '<tr><td colspan="2">Nama Siswa</td><td colspan="5">'.$nama.'</td></tr>';
+			echo '<tr><td colspan="2">Kelas</td><td colspan="5">'.$kelas.'</td></tr>';
+			echo '<tr><td colspan="2">Pembayaran</td><td colspan="5">';
 
-		echo '<div class="row">';
-		echo '<div class="col-sm-9"><table class="table table-bordered">';
-		echo '<tr><td colspan="2">Nomor Induk</td><td colspan="4">'.$nis.'</td>';
-		echo '<td><a href="./cetak.php?nis='.$nis.'" target="_blank" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> cetak semua</a></td></tr>';
-		echo '<tr><td colspan="2">Nama Siswa</td><td colspan="5">'.$nama.'</td></tr>';
-		echo '<tr><td colspan="2">Kelas</td><td colspan="5">'.$kelas.'</td></tr>';
-		echo '<tr><td colspan="2">Pembayaran</td><td colspan="5">';
+
 ?>
 <form class="form-inline" role="form" method="post" action="./admin.php?hlm=bayar">
   <input type="hidden" name="nis" id="nis" value="<?php echo $nis; ?>">
@@ -153,7 +155,11 @@ if( empty( $_SESSION['iduser'] ) ){
 			echo '<tr><td colspan="7"><em>Belum ada data!</em></td></tr>';
 		}
 		echo '</table></div></div>';
-
+	}else{
+		echo '<div class="alert alert-danger" role="alert">';
+		echo 'Cek kembali NIS yang anda masukan!<br></div>';
+		echo '<a href="admin.php?hlm=bayar">Kembali ke Pembayaran</a>';
+	}
 	} else {
 ?>
 <!-- form input nomor induk siswa -->
@@ -161,7 +167,7 @@ if( empty( $_SESSION['iduser'] ) ){
   <div class="form-group">
     <label for="nis" class="col-sm-2 control-label">Nomor Induk Siswa</label>
     <div class="col-sm-3">
-      <input type="text" class="form-control" id="nis" name="nis" placeholder="Nomor Induk Siswa" required autofocus>
+      <input type="text" class="form-control" id="nis" name="nis" placeholder="Nomor Induk Siswa" maxlength="7" required autofocus>
     </div>
   </div>
   <div class="form-group">
@@ -171,6 +177,9 @@ if( empty( $_SESSION['iduser'] ) ){
   </div>
 </form>
 <?php
+
 	}
+
 }
+
 ?>

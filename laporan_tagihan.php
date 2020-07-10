@@ -4,8 +4,8 @@ if( empty( $_SESSION['iduser'] ) ){
 	header('Location: ./');
 	die();
 } else {
-   echo '<h2>Laporan Pembayaran SPP Siswa</h2><hr>';
-   $sql = mysqli_query($connect,"SELECT nis, nama, kelas from siswa ORDER BY kelas");
+   echo '<h2>Rekap Pembayaran SPP Siswa</h2><hr>';
+   $sql = mysqli_query($connect,"SELECT nis, nama, kelas, idrombel from siswa ORDER BY kelas");
 
    echo '<div class="row">';
    echo '<div class="col-md-12">';
@@ -17,8 +17,8 @@ if( empty( $_SESSION['iduser'] ) ){
    echo '</thead><tbody id="myTable">';
 
    $no=1;
-   while(list($nis, $nama, $kls)=mysqli_fetch_array($sql)){
-      echo '<tr><td style="text-align:center;">'.$no.'</td><td>'.$nis.'</td><td>'.strtoupper($nama).'</td><td style="text-align:center;">'.$kls.'</td>';
+   while(list($nis, $nama, $kls, $idrombel)=mysqli_fetch_array($sql)){
+      echo '<tr><td style="text-align:center;">'.$no.'</td><td>'.$nis.'</td><td>'.strtoupper($nama).'</td><td style="text-align:center;">'.$kls.''.$idrombel.' </td>';
 			$months = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
 			foreach ($months as $bln) {
 				$query_jml_perbulan = "SELECT jumlah FROM pembayaran WHERE jenis='SPP' AND nis='$nis' AND bulan='$bln'";

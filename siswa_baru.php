@@ -27,7 +27,7 @@ if( empty( $_SESSION['iduser'] ) ){
 	<div class="form-group">
 		<label for="nis" class="col-sm-2 control-label">NIS</label>
 		<div class="col-sm-2">
-			<input type="text" class="form-control" id="nis" name="nis" placeholder="Nomor Induk Siswa" maxlength="10" required autofocus>
+			<input type="text" class="form-control" id="nis" name="nis" placeholder="Nomor Induk Siswa" maxlength="7" required autofocus>
 		</div>
 	</div>
 	<div class="form-group">

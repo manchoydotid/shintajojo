@@ -14,15 +14,10 @@ if( empty( $_SESSION['iduser'] ) ){
 			$pass1 = $_REQUEST['pass1'];
 			$pass2 = $_REQUEST['pass2'];
 			
-			$sql = mysql_query("SELECT password FROM user WHERE iduser='$iduser' AND password=md5('$pass1')");
-			if(mysql_num_rows($sql) > 0){
-				$do = mysql_query("UPDATE user SET password=md5('$pass2') WHERE iduser='$iduser'");
-				if($sql > 0){
-					header('Location: ./logout.php');
-					die();
-				} else {
-					echo 'ada ERROR dg query';
-				}
+			$sql = mysqli_query($connect, "SELECT password FROM user WHERE iduser='$iduser' AND password='$pass1'");
+			if(mysqli_num_rows($sql) > 0){
+				$do = mysqli_query($connect, "UPDATE user SET password='$pass2' WHERE iduser='$iduser'");
+				echo '<div class="alert alert-success"><strong>Berhasil!  </strong>Password berhasil diganti!</div>';
 			} else {
 				//akses ilegal, paksa LOGOUT!
 				echo '<div class="alert alert-danger force-logout"><strong>ERROR:</strong> Password lama tidak sesuai! Anda mungkin tidak memiliki akses ke halaman ini.</div>';

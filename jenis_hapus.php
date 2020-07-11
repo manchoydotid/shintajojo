@@ -9,7 +9,6 @@ if( empty( $_SESSION['iduser'] ) ){
 		$tapel = $_REQUEST['tapel'];
 		$kelas = $_REQUEST['kelas'];
 		$jenis = $_REQUEST['jenis'];
-		$jumlah = $_REQUEST['jumlah'];
 
 		$sql = mysqli_query($connect,"DELETE FROM jenis_bayar WHERE kelas='$kelas' AND jenis='$jenis'");
 		if($sql > 0){

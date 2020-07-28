@@ -1,75 +1,121 @@
 <?php
-if( empty( $_SESSION['iduser'] ) ){
+function tgl_indo2($tanggal, $day)
+{
+	$bulan = array(
+		1 =>   'Januari',
+		'Februari',
+		'Maret',
+		'April',
+		'Mei',
+		'Juni',
+		'Juli',
+		'Agustus',
+		'September',
+		'Oktober',
+		'November',
+		'Desember'
+	);
+
+	switch ($day) {
+		case 'Sunday':
+			$hari_ini = "Minggu";
+			break;
+
+		case 'Monday':
+			$hari_ini = "Senin";
+			break;
+
+		case 'Tuesday':
+			$hari_ini = "Selasa";
+			break;
+
+		case 'Wednesday':
+			$hari_ini = "Rabu";
+			break;
+
+		case 'Thursday':
+			$hari_ini = "Kamis";
+			break;
+
+		case 'Friday':
+			$hari_ini = "Jumat";
+			break;
+
+		case 'Saturday':
+			$hari_ini = "Sabtu";
+			break;
+
+		default:
+			$hari_ini = "Tidak di ketahui";
+			break;
+	}
+
+	$pecahkan = explode('-', $tanggal);
+
+
+	// variabel pecahkan 0 = tanggal
+	// variabel pecahkan 1 = bulan
+	// variabel pecahkan 2 = tahun
+
+	return $hari_ini . ' ' . $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
+}
+
+if (empty($_SESSION['iduser'])) {
 	$_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
 	header('Location: ./');
 	die();
 } else {
-   if( isset( $_REQUEST['sub'] )){
-      $sub = $_REQUEST['sub'];
+	if (isset($_REQUEST['sub'])) {
+		$sub = $_REQUEST['sub'];
 
-      include "laporan_tagihan.php";
-   } else {
+		// include "laporan_tagihan.php";
+		switch ($sub) {
+			case 'tagihan':
+				include 'laporan_tagihan.php';
+				break;
+			case 'jenis':
+				include 'laporan_jenis.php';
+				break;
+			case 'kelas':
+				include 'laporan_kelas.php';
+				break;
+		}
+	} else {
 
-			echo '<h2>Rekap Pembayaran</h2></br>';
 ?>
-			<form class="form-inline" role="form" method="post" action="">
-				<label for="jenis" class=" control-label">Jenis Pembayaran</label>
-				<div class="form-group">
-					<div class="col-sm-8">
-					 	<select name="jns" class="form-control" id="jns">
-						 <option value="SPP">Pilih Jenis Pembayaran</option>
-						 <option value="SPP">SPP</option>
-						 <option value="PTS">PTS</option>
-						 <option value="PAS">PAS</option>
-						 <option value="Kegiatan">Kegiatan</option>
-						 <option value="Kurban">Kurban</option>
-						 <option value="Zakat">Zakat</option>
-						 <option value="Outing">Outing</option>
-						 <option value="Manasik">Manasik</option>
-						 <option value="Ujian">Ujian</option>
-						 <option value="PM">PM</option>
-					 </select>
-				 </div>
-			 </div>
-			  <button type="submit" name="submit" class="btn btn-default">Tampilkan</button>
-			</form>
-			<hr>
-			<div class="container">
+		<div class="container">
+	<?php
+		echo '<br>';
+		echo '<img class="menu-icon" src="images/kop2.png" alt="MI Assa\'adiyah Attahiriyah" width="1200" height="100"></a>';
+		echo '<h2><center>Laporan Rekap Pembayaran SPP Siswa periode Januari - Februari</center></h2>';
+		// echo '<a class="noprint pull-right btn btn-default" onclick="fnCetak()">Cetak</a>';
+		$months = array("Januari", "Februari");
+		echo '<div class="flex-container" >';
 
-			<?php
-				if(isset($_REQUEST['submit'])){
-					$submit = $_REQUEST['submit'];
-					$jenis_bayar = $_REQUEST['jns'];
+		foreach ($months as $bln) {
 
-					echo '<h5>Jenis Pembayaran : '.$jenis_bayar.'</h5><hr>';
-					echo '<a class="noprint pull-right btn btn-default" onclick="fnCetak()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Cetak</a>';
+			$q = "SELECT kelas, sum(jumlah) FROM pembayaran WHERE jenis='SPP' AND bulan='$bln' GROUP BY kelas";
+			$sql = mysqli_query($connect, $q);
 
-					$months = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
-					echo '<div class="flex-container">';
-
-					foreach ($months as $bln) {
-					
-						$q = "SELECT kelas, sum(jumlah) FROM pembayaran WHERE jenis='$jenis_bayar' AND bulan='$bln' GROUP BY kelas";
-						$sql = mysqli_query($connect, $q);
-
-						$total = 0;
-						$total_keseluruhan = 0;
-						$no=1;
-						echo '<table class="table table-bordered">';					
-						echo '<tr><td colspan="2" bgcolor="#008c52" style="color:#fff;">'.$bln.'</td></tr>';
-						while(list($kls, $jml) = mysqli_fetch_array($sql)){
-							echo '<tr><td style="text-align:right">Kelas '.$kls.'</td><td><span class="pull-right">Rp. '.number_format($jml).'</span></td></tr>';
-							$total += $jml;
-							$no++;
-						}
-						echo '<tr><td style="text-align:right"><strong>Total</strong></td><td><span class="pull-right"><strong>Rp. '.number_format($total).'</strong></span></td></tr>';
-						echo '</table>';
-					}
-					echo '</div>';
-					echo '</div>';
-
-				} else {
-      }
-   }
+			$total = 0;
+			$total_keseluruhan = 0;
+			$no = 1;
+			echo '<table class="table table-bordered" border="1" style="margin:0 auto;">';
+			echo '<tr><td colspan="2" bgcolor="#008c52" style="color:#fff;">' . $bln . '</td></tr>';
+			while (list($kls, $jml) = mysqli_fetch_array($sql)) {
+				echo '<tr><td style="text-align:right">Kelas ' . $kls . '</td><td><span class="pull-right">Rp. ' . number_format($jml) . '</span></td></tr>';
+				$total += $jml;
+				$no++;
+			}
+			echo '<tr><td style="text-align:right"><strong>Total</strong></td><td><span class="pull-right"><strong>Rp. ' . number_format($total) . '</strong></span></td></tr>';
+			echo '</table> <br>';
+		}
+		echo '</div>';
+		echo '</div>';
+		echo '<div style="text-align: right; margin-right:160px;">';
+		echo 'Jakarta, ' . tgl_indo2(date("Y-m-d"), date("l"));
+		echo '<br>Ttd&emsp;&emsp;&emsp;&emsp;<br><br><br>';
+		echo 'Petugas&emsp;&emsp;&emsp;</div>';
+	}
 }
-?>
+	?>

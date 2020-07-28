@@ -1,13 +1,13 @@
 <?php
-if( empty( $_SESSION['iduser'] ) ){
+if (empty($_SESSION['iduser'])) {
 	//session_destroy();
 	$_SESSION['err'] = '<strong>ERROR!</strong> Anda harus login terlebih dahulu.';
 	header('Location: ./');
 	die();
 } else {
-	if( isset( $_REQUEST['aksi'] )){
+	if (isset($_REQUEST['aksi'])) {
 		$aksi = $_REQUEST['aksi'];
-		switch($aksi){
+		switch ($aksi) {
 			case 'baru':
 				include 'tapel_baru.php';
 				break;
@@ -21,18 +21,18 @@ if( empty( $_SESSION['iduser'] ) ){
 	} else {
 		$sql = mysqli_query($connect, "SELECT * FROM tapel ORDER BY tapel DESC");
 		echo '<h2>Konfigurasi Tahun Pelajaran</h2><hr>';
-      echo '<div class="row">';
-		echo '<div class="col-md-6" style="margin: 0 auto;"><table class="table table-bordered">';
+		echo '<div class="row">';
+		echo '<div class="col-md-6" style="margin: 0 auto;"><table class="table table-bordered" border="1">';
 		echo '<tr class="info"><th width="30">No</th><th width="100">Tahun Pelajaran</th>';
 		echo '<th width="200"><a href="./admin.php?hlm=master&sub=tapel&aksi=baru" class="btn btn-default btn-xs">Tambah Data</a></th></tr>';
 
-		if( mysqli_num_rows($sql) > 0 ){
+		if (mysqli_num_rows($sql) > 0) {
 			$no = 1;
-			while(list($id,$tapel) = mysqli_fetch_array($sql)){
-				echo '<tr><td>'.$no.'</td>';
-				echo '<td>'.$tapel.'</td>';
-				echo '<td style="text-align: center;"><a href="./admin.php?hlm=master&sub=tapel&aksi=edit&id='.$id.'" class="btn btn-success btn-xs">Edit</a> ';
-				echo '<a href="./admin.php?hlm=master&sub=tapel&aksi=hapus&id='.$id.'" class="btn btn-danger btn-xs">Hapus</a></td>';
+			while (list($id, $tapel) = mysqli_fetch_array($sql)) {
+				echo '<tr><td>' . $no . '</td>';
+				echo '<td>' . $tapel . '</td>';
+				echo '<td style="text-align: center;"><a href="./admin.php?hlm=master&sub=tapel&aksi=edit&id=' . $id . '" class="btn btn-success btn-xs">Edit</a> ';
+				echo '<a href="./admin.php?hlm=master&sub=tapel&aksi=hapus&id=' . $id . '" class="btn btn-danger btn-xs">Hapus</a></td>';
 				echo '</tr>';
 				$no++;
 			}
@@ -43,4 +43,3 @@ if( empty( $_SESSION['iduser'] ) ){
 		echo '</table></div></div>';
 	}
 }
-?>

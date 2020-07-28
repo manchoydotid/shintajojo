@@ -1,75 +1,56 @@
 <?php
-if( !empty( $_SESSION['iduser'] ) ){
+if (!empty($_SESSION['iduser'])) {
 ?>
-<style>
+    <style>
 
-</style>
-<head>
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-<link rel="icon" href="images/favicon.ico" type="image/x-icon">
-</head>
-<!-- Fixed navbar -->
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container">
-	<div class="navbar-header">
-	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-		<span class="sr-only">Toggle navigation</span>
-		<span class="icon-bar"></span>
-		<span class="icon-bar"></span>
-		<span class="icon-bar"></span>
-	  </button>
-	  <!-- <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-fire"></span>SPP</a> -->
-	</div>
-	<div class="navbar-collapse collapse">
-	  <ul class="nav navbar-nav">
-		<li><a href="./admin.php">Home</a></li>
-    <li class="dropdown">
-		  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Master <b class="caret"></b></a>
-		  <ul class="dropdown-menu">
-			<li><a href="./admin.php?hlm=master&sub=siswa">Siswa</a></li>
-			<li><a href="./admin.php?hlm=master&sub=kelas">Kelas</a></li>
-  			<?php
-  			   if( $_SESSION['admin'] == 1 ){
-  			?>
-      <li><a href="./admin.php?hlm=master&sub=tapel">Tahun Pelajaran</a></li>
-			<li><a href="./admin.php?hlm=master&sub=jenis">Jenis Pembayaran</a></li>
-			<li class="divider"></li>
-      <li><a href="./admin.php?hlm=master">User</a></li>
-  			<?php
-  			   }
-  			?>
-		  </ul>
-		</li>
-		<li><a href="./admin.php?hlm=bayar">Pembayaran</a></li>
-		<li class="dropdown">
-		  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laporan <b class="caret"></b></a>
-		  <ul class="dropdown-menu">
-			<li><a href="./admin.php?hlm=laporan&sub=tagihan">Rekap Pembayaran SPP</a></li>
-			<li><a href="./admin.php?hlm=laporan">Laporan Pembayaran</a></li>
-		  </ul>
-		</li>
+    </style>
 
-	  </ul>
-	  <ul class="nav navbar-nav navbar-right">
-		<li class="dropdown">
-		  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-			<?php echo $_SESSION['fullname']; ?> <b class="caret"></b>
-		  </a>
-		  <ul class="dropdown-menu">
-			<li><a href="./admin.php?hlm=user">Profil</a></li>
-			<li><a href="./admin.php?hlm=user&sub=pass">Ganti Password</a></li>
-			<li class="divider"></li>
-			<li><a href="logout.php">Logout</a></li>
-		  </ul>
-		</li>
-	  </ul>
-	</div>
-  <!-- nav-collapse -->
-  </div>
-</div>
+    <head>
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    </head>
+    <table width="1200" cellspacing="0" cellpadding="12" border="0" bgcolor="#05AC72">
+        <tr>
+            <td><a href="./admin.php">
+                    <font face="Helvetica" color="#FFF"><b>Home</b></font>
+                </a></td>
+            <td><a href="./admin.php?hlm=master&sub=siswa"">
+            <font face=" Helvetica" color="#FFF"><b>Data Siswa</b></font></a></td>
+            <td><a href="./admin.php?hlm=master&sub=kelas">
+                    <font face="Helvetica" color="#FFF"><b>Data Kelas</b></font>
+                </a></td>
+            <td><a href="./admin.php?hlm=master&sub=tapel">
+                    <font face="Helvetica" color="#FFF"><b>Tahun Pelajaran</b></font>
+                </a></td>
+            <td><a href="./admin.php?hlm=master&sub=jenis">
+                    <font face="Helvetica" color="#FFF"><b>Jenis Pembayaran</b></font>
+                </a></td>
+            <td><a href="./admin.php?hlm=master">
+                    <font face="Helvetica" color="#FFF"><b>User</b></font>
+                </a></td>
+            <td><a href="./admin.php?hlm=bayar">
+                    <font face="Helvetica" color="#FFF"><b>Pembayaran</b></font>
+                </a></td>
+            <td><a href="./admin.php?hlm=laporan&sub=jenis">
+                    <font face="Helvetica" color="#FFF"><b>Laporan Jenis Pembayaran</b></font>
+                </a></td>
+            <td><a href="./admin.php?hlm=laporan&sub=kelas">
+                    <font face="Helvetica" color="#FFF"><b>Laporan Jumlah Siswa</b></font>
+                </a></td>
+            <td><a href="./admin.php?hlm=laporan&sub=tagihan">
+                    <font face="Helvetica" color="#FFF"><b>Laporan Rekap Pembayaran SPP Perbulan</b></font>
+                </a></td>
+            <td><a href="./admin.php?hlm=laporan">
+                    <font face="Helvetica" color="#FFF"><b>Laporan Pembayaran SPP</b></font>
+                </a></td>
+            <td><a href="logout.php">
+                    <font face="Helvetica" color="#FFF"><b>Logout</b></font>
+                </a></td>
+        </tr>
+    </table>
 <?php
 } else {
-	header("Location: ./");
-	die();
+    header("Location: ./");
+    die();
 }
 ?>

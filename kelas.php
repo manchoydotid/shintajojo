@@ -21,9 +21,9 @@ if (empty($_SESSION['iduser'])) {
 		//tahun pelajaran mestinya bersifat dinamis, temukan cara agar th_pelajaran dapat ditentukan saat menampilkan kelas
 		// $sql = mysqli_query($connect, "SELECT siswa.kelas, count(kelas.nis) as jml, siswa.idrombel FROM kelas,siswa WHERE kelas.nis=siswa.nis GROUP BY kelas.kelas,siswa.idrombel");
 		$sql = mysqli_query($connect, "SELECT kelas, count(nis) as jml, idrombel FROM siswa GROUP BY kelas, idrombel");
-		echo '<h2>Daftar Kelas</h2><hr>';
+		echo '<center><h2>Daftar Kelas</h2></center>';
 		echo '<div class="row">';
-		echo '<div class="col-md-7" style="margin: 0 auto;"><table class="table table-bordered" border="1">';
+		echo '<div class="col-md-7" style="margin: 0 auto;"><center><table class="table table-bordered" border="1">';
 		echo '<tr class="info"><th width="7px" style="text-align:center;">No</th><th width="150">Kelas</th>';
 		echo '<th width="100" >View</th></tr>';
 
@@ -39,6 +39,6 @@ if (empty($_SESSION['iduser'])) {
 		} else {
 			echo '<tr><td colspan="5"><em>Belum ada data</em></td></tr>';
 		}
-		echo '</table></div></div>';
+		echo '</table></center></div></div>';
 	}
 }

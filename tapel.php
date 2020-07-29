@@ -20,9 +20,9 @@ if (empty($_SESSION['iduser'])) {
 		}
 	} else {
 		$sql = mysqli_query($connect, "SELECT * FROM tapel ORDER BY tapel DESC");
-		echo '<h2>Konfigurasi Tahun Pelajaran</h2><hr>';
+		echo '<center><h2>Tahun Pelajaran</h2></center>';
 		echo '<div class="row">';
-		echo '<div class="col-md-6" style="margin: 0 auto;"><table class="table table-bordered" border="1">';
+		echo '<div class="col-md-6" style="margin: 0 auto;"><center><table class="table table-bordered" border="1">';
 		echo '<tr class="info"><th width="30">No</th><th width="100">Tahun Pelajaran</th>';
 		echo '<th width="200"><a href="./admin.php?hlm=master&sub=tapel&aksi=baru" class="btn btn-default btn-xs">Tambah Data</a></th></tr>';
 
@@ -40,6 +40,6 @@ if (empty($_SESSION['iduser'])) {
 			echo '<tr><td colspan="4"><em>Belum ada data</em></td></tr>';
 		}
 
-		echo '</table></div></div>';
+		echo '</table></center></div></div>';
 	}
 }

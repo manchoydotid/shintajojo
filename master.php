@@ -42,7 +42,7 @@ if( empty( $_SESSION['iduser'] ) ){
 					break;
 			}
 		} else {
-			echo '<h2>Daftar User</h2><hr>';
+			echo '<center><h2>Daftar User</h2></center>';
 
 			$sql = mysqli_query($connect, "SELECT iduser,username,admin,fullname FROM user ORDER BY iduser");
 
@@ -50,7 +50,7 @@ if( empty( $_SESSION['iduser'] ) ){
 			$no = 1;
 	    echo '<div class="row">';
 	    echo '<div class="col-md-6" style="margin: 0 auto;">';
-			echo '<table class="table table-bordered" border="1">';
+			echo '<center><table class="table table-bordered" border="1">';
 			echo '<tr class="info"><th width="30">No</th><th>Username</th><th>Nama Lengkap</th><th width="50">Admin</th>';
 			echo '<th><a href="admin.php?hlm=master&aksi=baru" class="btn btn-default btn-xs">Tambah</a></th></tr>';
 			while(list($id,$username,$admin,$fullname) = mysqli_fetch_array($sql)){
@@ -64,7 +64,7 @@ if( empty( $_SESSION['iduser'] ) ){
 				echo '<a href="admin.php?hlm=master&aksi=hapus&id='.$id.'" class="btn btn-danger btn-xs">Hapus</a></td></tr>';
 				$no++;
 			}
-			echo '</table>';
+			echo '</table></center>';
          echo '</div></div>';
 		}
 	}

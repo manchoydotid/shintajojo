@@ -9,7 +9,7 @@ if (empty($_SESSION['iduser'])) {
 		2. tampilkan histori pembayaran (jika ada) dan form pembayaran
 		3. proses pembayaran
 	*/
-	echo '<h2>Pembayaran SPP</h2><hr>';
+	echo '<center><h2>Pembayaran SPP</h2></center>';
 
 	if (isset($_REQUEST['submit'])) {
 		//proses pembayaran secara bertahap
@@ -70,7 +70,7 @@ if (empty($_SESSION['iduser'])) {
 		if (mysqli_num_rows($qsiswa) > 0) {
 			list($nis, $nama, $kelas) = mysqli_fetch_array($qsiswa);
 			echo '<div class="row">';
-			echo '<div class="col-sm-9"><table class="table table-bordered" border="1">';
+			echo '<div class="col-sm-9"><center><table class="table table-bordered" border="1">';
 			echo '<tr><td colspan="2">Nomor Induk</td><td colspan="4">' . $nis . '</td>';
 			echo '<td><a href="./cetak.php?nis=' . $nis . '" target="_blank" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> cetak semua</a></td></tr>';
 			echo '<tr><td colspan="2">Nama Siswa</td><td colspan="5">' . $nama . '</td></tr>';
@@ -154,7 +154,7 @@ if (empty($_SESSION['iduser'])) {
 			} else {
 				echo '<tr><td colspan="7"><em>Belum ada data!</em></td></tr>';
 			}
-			echo '</table></div></div>';
+			echo '</table></center></div></div>';
 		} else {
 			echo '<div class="alert alert-danger" role="alert">';
 			echo 'Cek kembali NIS yang anda masukan!<br></div>';
@@ -163,11 +163,13 @@ if (empty($_SESSION['iduser'])) {
 	} else {
 		?>
 		<!-- form input nomor induk siswa -->
-		<form class="form-horizontal" role="form" method="post" action="./admin.php?hlm=bayar">
+		<form class="form-horizontal" role="form" method="post" action="./admin.php?hlm=bayar" style="text-align:center;">
 			<div class="form-group">
 				<label for="nis" class="col-sm-2 control-label">Nomor Induk Siswa</label>
+				<br>
 				<div class="col-sm-3">
 					<input type="text" class="form-control" id="nis" name="nis" placeholder="Nomor Induk Siswa" maxlength="7" required autofocus>
+					<br><br>
 				</div>
 			</div>
 			<div class="form-group">

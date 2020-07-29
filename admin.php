@@ -51,7 +51,7 @@ if (empty($_SESSION['iduser'])) {
 			} else {
 			?>
 				<br>
-				<img class="menu-icon" src="images/banner.png" alt="Tambah Siswa" width="1200px">
+				<center><img class="menu-icon" src="images/banner.png" alt="Tambah Siswa" width="1200px"></center>
 				<br>
 				<br>
 				<div style="text-align:center;">

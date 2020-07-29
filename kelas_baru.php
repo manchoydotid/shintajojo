@@ -25,12 +25,12 @@ if (empty($_SESSION['iduser'])) {
 
 		echo '<div class="row">';
 		echo '<div class="col-md-12">';
-		echo '<h2>Daftar Siswa Kelas ' . $kelas . ' ' . $idrombel . '</h2><br>';
+		echo '<center><h2>Daftar Siswa Kelas ' . $kelas . ' ' . $idrombel . '</h2></center><br>';
 
 		//tabel daftar siswa
 		echo '<div class="row">';
 		echo '<div class="col-md-9" style="margin: 0 auto;">';
-		echo '<table class="table table-bordered" border="1">';
+		echo '<center><table class="table table-bordered" border="1">';
 		echo '<tr><td colspan="2">Kelas</td><td colspan="2">' . $kelas . ' ' . $idrombel . '</td></tr>';
 		echo '<tr class="info"><th width="20">No</th><th width="150">NIS</th><th>Nama Siswa</th>';
 		echo '<th width="200"><a href="./admin.php?hlm=master&sub=siswa&aksi=baru" class="btn btn-default btn-xs">Tambah Data</a></th></tr>';
@@ -51,7 +51,7 @@ if (empty($_SESSION['iduser'])) {
 		} else {
 			echo '<tr><td colspan="4"><em>Belum ada data.</em></td></tr>';
 		}
-		echo '</table></div></div>';
+		echo '</table></center></div></div>';
 	} else {
 ?>
 		<!--

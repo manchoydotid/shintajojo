@@ -20,12 +20,10 @@ if (empty($_SESSION['iduser'])) {
 		}
 	} else {
 		$sql = mysqli_query($connect, "SELECT * FROM siswa ORDER BY nis");
-		echo '<h2>Daftar Siswa</h2><hr>';
+		echo '<center><h2>Daftar Siswa</h2></center>';
 		echo '<div class="row">';
 		echo '<div class="col-md-9" style="margin: 0 auto;">';
-		echo '<strong>Pencarian &nbsp; &nbsp</strong>';
-		echo '<input style="width:  300px;" type="text" id="search" placeholder="Masukan nis, nama atau kelas.." onkeyup="searchTable()"/></br></br>';
-		echo '<table class="table table-bordered" border="1">';
+		echo '<center><table class="table table-bordered" border="1">';
 		echo '<thead><tr class="info"><th>No</th><th width="100">NIS</th><th>Nama Lengkap</th><th>Kelas</th>';
 		echo '<th width="200"><a href="./admin.php?hlm=master&sub=siswa&aksi=baru" class="btn btn-default btn-xs">Tambah Data</a></th></tr>';
 		echo '</thead><tbody id="myTable">';
@@ -45,7 +43,7 @@ if (empty($_SESSION['iduser'])) {
 			echo '<tr><td colspan="5"><em>Belum ada data</em></td></tr>';
 		}
 		echo '</tbody>';
-		echo '</table></div></div>';
+		echo '</table></center></div></div>';
 	}
 }
 ?>

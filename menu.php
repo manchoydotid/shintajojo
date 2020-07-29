@@ -9,6 +9,7 @@ if (!empty($_SESSION['iduser'])) {
         <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
         <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     </head>
+    <center>
     <table width="1200" cellspacing="0" cellpadding="12" border="0" bgcolor="#05AC72">
         <tr>
             <td><a href="./admin.php">
@@ -48,6 +49,7 @@ if (!empty($_SESSION['iduser'])) {
                 </a></td>
         </tr>
     </table>
+</center>
 <?php
 } else {
     header("Location: ./");

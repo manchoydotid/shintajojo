@@ -3,7 +3,7 @@ session_start();
 include "koneksi.php";
 
 //Fungsi untuk merubah tanggal ke format Indonesia
-function tgl_indo($tanggal)
+function tgl_indo($tanggal, $day)
 {
 	$bulan = array(
 		1 =>   'Januari',
@@ -19,14 +19,51 @@ function tgl_indo($tanggal)
 		'November',
 		'Desember'
 	);
+
+	switch ($day) {
+		case 'Sunday':
+			$hari_ini = "Minggu";
+			break;
+
+		case 'Monday':
+			$hari_ini = "Senin";
+			break;
+
+		case 'Tuesday':
+			$hari_ini = "Selasa";
+			break;
+
+		case 'Wednesday':
+			$hari_ini = "Rabu";
+			break;
+
+		case 'Thursday':
+			$hari_ini = "Kamis";
+			break;
+
+		case 'Friday':
+			$hari_ini = "Jumat";
+			break;
+
+		case 'Saturday':
+			$hari_ini = "Sabtu";
+			break;
+
+		default:
+			$hari_ini = "Tidak di ketahui";
+			break;
+	}
+
 	$pecahkan = explode('-', $tanggal);
+
 
 	// variabel pecahkan 0 = tanggal
 	// variabel pecahkan 1 = bulan
 	// variabel pecahkan 2 = tahun
 
-	return $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
+	return $hari_ini . ' ' . $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
 }
+
 //End Fungsi
 
 
@@ -97,7 +134,7 @@ if (empty($_SESSION['iduser'])) {
 		echo "=========================================================================================";
 		echo "<table style='width: 50%; margin: 0px auto; float: none;' class='table table-bordered'>";
 		echo "	<tr>";
-		echo "		<td align='right'>Jakarta, " . tgl_indo($tgl_bayar);
+		echo "		<td align='right'>Jakarta, " . tgl_indo($tgl_bayar,  date("l"));
 		echo "			<tr>";
 		echo "				<td align='right'>Penerima &nbsp &nbsp &nbsp &nbsp &nbsp</td>";
 		echo "			</tr>";

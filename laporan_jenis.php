@@ -69,7 +69,7 @@ if (empty($_SESSION['iduser'])) {
 
     echo '<div class="container">';
     echo '<br>';
-    echo '<img class="menu-icon" src="images/kop2.png" alt="MI Assa\'adiyah Attahiriyah" width="1200" height="100"></a>';
+    echo '<img class="menu-icon" src="images/kop2.png" alt="MI Assa\'adiyah Attahiriyah"></a>';
     echo '<h2><center>Laporan Jenis Pembayaran</center></h2>';
     $sql = mysqli_query($connect, "SELECT * FROM jenis_bayar ORDER BY th_pelajaran DESC, kelas ASC");
 

@@ -44,6 +44,9 @@ if( empty( $_SESSION['iduser'] ) ){
 					echo '<h5>Jenis Pembayaran : '.$jenis_bayar.'</h5><hr>';
 					echo '<a class="noprint pull-right btn btn-default" onclick="fnCetak()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Cetak</a>';
 
+					$qtotal = "SELECT sum(jumlah) AS total FROM pembayaran WHERE jenis='$jenis_bayar'";
+					$sqltotal = mysqli_query($connect, $qtotal);
+
 					$months = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
 					echo '<div class="flex-container">';
 
@@ -65,6 +68,11 @@ if( empty( $_SESSION['iduser'] ) ){
 						echo '<tr><td style="text-align:right"><strong>Total</strong></td><td><span class="pull-right"><strong>Rp. '.number_format($total).'</strong></span></td></tr>';
 						echo '</table>';
 					}
+					$values = mysqli_fetch_assoc($sqltotal);
+					$total_semua = $values['total'];
+					echo '<table class="table table-bordered">';					
+					echo '<tr><td bgcolor="#ffc700"><strong>Total Keseluruhan</strong></td><td bgcolor="#ffc700"><span class="pull-right"><strong>Rp. '.number_format($total_semua).'</strong></span></td></tr>';
+					echo '</table>';
 					echo '</div>';
 					echo '</div>';
 
